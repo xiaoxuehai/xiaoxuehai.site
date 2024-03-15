@@ -94,9 +94,7 @@ const config: Config = {
       },
       typography: () => ({
         DEFAULT: {
-          css: {
-            // color: theme('colors.gray.600')
-          },
+          css: {},
         },
         custom: {
           css: {

@@ -1,17 +1,19 @@
-import { CSSProperties } from 'react';
+import type {
+  CSSProperties,
+  PropsWithChildren,
+  ComponentPropsWithoutRef,
+} from 'react';
 
 import clsxm from '@/lib/clsxm';
 
-interface ShimmerButtonProps {
-  shimmerColor?: string;
-  shimmerSize?: string;
-  borderRadius?: string;
-  shimmerDuration?: string;
-  background?: string;
-  className?: string;
-  children?: React.ReactNode;
-  [key: string]: any; // ...props
-}
+export type ShimmerButtonProps = PropsWithChildren &
+  ComponentPropsWithoutRef<'button'> & {
+    shimmerColor?: string;
+    shimmerSize?: string;
+    borderRadius?: string;
+    shimmerDuration?: string;
+    background?: string;
+  };
 
 export function ShimmerButton({
   shimmerColor = '#ffffff',
@@ -36,24 +38,18 @@ export function ShimmerButton({
         } as CSSProperties
       }
       className={clsxm(
-        'group relative flex cursor-pointer overflow-hidden whitespace-nowrap px-6 py-4 text-white [background:var(--bg)] [border-radius:var(--radius)] dark:text-black ',
+        'group relative flex cursor-pointer overflow-hidden whitespace-nowrap px-6 py-3 text-white [background:var(--bg)] [border-radius:var(--radius)] dark:text-black ',
         'transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_8px_rgba(62,61,117,0.7)]',
         className,
       )}
       {...props}
     >
-      {/* spark container */}
       <div className='absolute inset-0 overflow-visible [container-type:size]'>
-        {/* spark */}
         <div className='absolute inset-0 h-[100cqh] animate-slide  transition-opacity [aspect-ratio:1] [border-radius:0] [mask:none] group-hover:opacity-100'>
-          {/* spark before */}
           <div className='absolute inset-[-100%] w-auto rotate-0 animate-spin-linear [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,hsl(0_0%_100%/1)_var(--spread),transparent_var(--spread))] [translate:0_0]' />
         </div>
       </div>
-
-      {/* backdrop */}
       <div className='absolute [background:var(--bg)] [border-radius:var(--radius)] [inset:var(--cut)]' />
-      {/* content */}
       {children}
     </button>
   );

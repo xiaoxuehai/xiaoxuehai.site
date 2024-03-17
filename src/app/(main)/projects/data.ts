@@ -4,7 +4,7 @@ export const projects = [
     description: '基于Next.js、Typescript、Tailwindcss、MDX开发的个人博客项目',
     source: 'https://github.com/xiaoxuehai/xiaoxuehai.site',
     link: 'http://xiaoxuehai.site',
-    tags: ['Next.js', 'Typescript', 'Tailwindcss'],
+    tags: ['Next.js', 'TypeScript', 'Tailwindcss'],
   },
   {
     title: '心芝趣测H5',

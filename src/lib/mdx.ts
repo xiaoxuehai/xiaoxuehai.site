@@ -5,12 +5,10 @@ import glob from 'fast-glob';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
 
-import { Frontmatter } from '@/types/mdx';
-
-export type ContentType = 'blog' | 'library';
-
+import { ContentType, Frontmatter } from '@/types/mdx';
+const CONTENT_DIR = 'src/content';
 export async function getAllFilesFrontmatter(type: ContentType) {
-  const contents: string[] = await glob(`src/contents/${type}/*.mdx`);
+  const contents: string[] = await glob(`${CONTENT_DIR}/${type}/*.mdx`);
 
   return await Promise.all(
     contents.map(async content => {
@@ -30,7 +28,7 @@ export async function getFileFrontmatter(
   slug: string,
 ): Promise<Frontmatter> {
   const source = await fs.readFile(
-    path.join(process.cwd(), 'src/contents', type, `${slug}.mdx`),
+    path.join(process.cwd(), CONTENT_DIR, type, `${slug}.mdx`),
     'utf8',
   );
   const frontmatter = matter(source).data as Frontmatter;

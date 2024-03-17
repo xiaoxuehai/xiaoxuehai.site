@@ -4,7 +4,7 @@ import { Header } from './Header';
 
 import { ProjectList } from './ProjectList';
 import { projects } from './data';
-export default function Project() {
+export default async function Projects() {
   return (
     <Container className='overflow-x-hidden'>
       <Header

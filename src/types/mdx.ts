@@ -7,7 +7,7 @@ export type Frontmatter = {
   description: string;
   [key: string]: any;
 };
-export type ContentType = 'blog' | 'projects' | 'about';
+export type ContentType = 'blogs' | 'notes';
 export type BlogItem = {
   slug: string;
   frontmatter: Frontmatter;

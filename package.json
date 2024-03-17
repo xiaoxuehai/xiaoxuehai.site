@@ -17,6 +17,7 @@
   "dependencies": {
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "dayjs": "^1.11.10",
     "fast-glob": "^3.3.2",
     "framer-motion": "^11.0.14",
     "gray-matter": "^4.0.3",

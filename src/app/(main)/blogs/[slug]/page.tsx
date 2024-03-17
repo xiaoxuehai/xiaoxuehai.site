@@ -1,10 +1,11 @@
-import { readFile } from 'fs/promises';
+import { readFile, access } from 'fs/promises';
 import path from 'path';
 
 import rehypeShiki, { type RehypeShikiOptions } from '@shikijs/rehype';
 import dayjs from 'dayjs';
 import { bundleMDX } from 'mdx-bundler';
 import NextLink from 'next/link';
+import { notFound } from 'next/navigation';
 import { FiCalendar, FiClock, FiRefreshCw, FiTag } from 'react-icons/fi';
 // import rehypeAutolinkHeadings, { Options } from 'rehype-autolink-headings';
 import readingTime from 'reading-time';
@@ -13,7 +14,7 @@ import remarkGfm from 'remark-gfm';
 
 import { Container } from '@/components/Container';
 import type { Frontmatter } from '@/lib';
-import { getAdjacentFile } from '@/lib/mdx';
+import { CONTENT_DIR, getAdjacentFile } from '@/lib/mdx';
 
 import { BlogContent } from './BlogContent';
 export default async function BlogDetail({
@@ -22,8 +23,15 @@ export default async function BlogDetail({
   params: { slug: string };
 }) {
   const slug = decodeURIComponent(params.slug);
+  const filePath = `/${CONTENT_DIR}/blogs/${slug}.mdx`;
+  try {
+    await access(filePath);
+  } catch (error) {
+    notFound();
+  }
+
   const source = (
-    await readFile(path.join(process.cwd(), `/src/content/blogs/${slug}.mdx`))
+    await readFile(path.join(process.cwd(), filePath))
   ).toString();
   const { code, frontmatter } = await bundleMDX<Frontmatter>({
     source,

@@ -7,7 +7,7 @@ import { FiCalendar, FiTag } from 'react-icons/fi';
 
 import { Animate } from '@/enum';
 
-import { BlogItem } from '@/types/mdx';
+import type { BlogItem } from '@/lib';
 
 export type FormatedBlogItem = {
   blogs: BlogItem[];

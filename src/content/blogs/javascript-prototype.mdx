@@ -16,7 +16,7 @@ tags:
 
 先复习下构造函数
 
-```js lang="JavaScript"
+```javascript
 //创建构造函数
 function Person(age) {
   this.age = age;
@@ -40,7 +40,7 @@ p.say(); //say
 
 实例person的隐式原型指向它构造函数的显式原型，指向的意思是恒等于
 
-```js lang="JavaScript"
+```javascript
 p.__proto__ === Person.prototype;
 ```
 
@@ -50,7 +50,7 @@ person本身没有say()方法，所以会去Person的显式原型中调用say()�
 
 ### 原型和原型链
 
-```js lang="JavaScript"
+```javascript
 Function.prototype.a = 'a';
 Object.prototype.b = 'b';
 function Person() {}
@@ -67,7 +67,7 @@ console.log(p.b); //b
 
 p是Person()的实例，是一个Person对象，它拥有一个属性值`__proto__`，并且`__proto__`是一个对象，包含两个属性值constructor和`__proto__`。
 
-```js lang="JavaScript"
+```javascript
 console.log(p.__proto__.constructor); //function Person(){}
 console.log(p.__proto__.__proto__); //对象{}，拥有很多属性值
 ```
@@ -80,14 +80,14 @@ console.log(p.__proto__.__proto__); //对象{}，拥有很多属性值
 
 所以p.b打印结果为b，p没有b属性，会一直通过`__proto__`向上查找，最后当查找到Object.prototype时找到，最后打印出b，向上查找过程中，得到的是Object.prototype，而不是Function.prototype，找不到a属性，所以结果为undefined，这就是原型链，通过`__proto__`向上进行查找，最终到null结束。
 
-```js lang="JavaScript"
+```javascript
 console.log(p.__proto__.__proto__.__proto__); //null
 console.log(Object.prototype.__proto__); //null
 ```
 
 理解刚才的过程，相信下面这些应该也都明白
 
-```js lang="JavaScript"
+```javascript
 //Function
 function Function() {}
 console.log(Function); //Function()

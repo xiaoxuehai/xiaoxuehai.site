@@ -1,6 +1,6 @@
 import React from 'react';
 
-import clsxm from '@/lib/clsxm';
+import { clsxm } from '@/lib/clsxm';
 
 export type ContainerProps = React.ComponentPropsWithoutRef<'div'>;
 

@@ -4,7 +4,7 @@ import { fontFamily } from 'tailwindcss/defaultTheme';
 import tailwindcssAnimate from 'tailwindcss-animate';
 const config: Config = {
   darkMode: ['class'],
-  content: ['src/app/**/*.{ts,tsx}', 'src/components/**/*.{ts,tsx}'],
+  content: ['./src/app/**/*.{ts,tsx}', './src/components/**/*.{ts,tsx}'],
   theme: {
     container: {
       center: true,

@@ -4,7 +4,7 @@ import type {
   ComponentPropsWithoutRef,
 } from 'react';
 
-import clsxm from '@/lib/clsxm';
+import { clsxm } from '@/lib/clsxm';
 
 export type ShimmerButtonProps = PropsWithChildren &
   ComponentPropsWithoutRef<'button'> & {

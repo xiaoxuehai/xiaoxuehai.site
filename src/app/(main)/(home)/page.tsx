@@ -47,12 +47,12 @@ export default function Page() {
     </div>
   );
   return (
-    <Container className='relative z-50 px-4 pt-8 sm:px-10 sm:pt-32'>
+    <Container>
       <motion.div
         initial={Animate.Hidden}
         animate={Animate.Show}
         variants={listVariants}
-        className='z-10 h-full'
+        className='h-full px-4 pt-8 sm:pt-32'
       >
         <header className='text-3xl font-bold leading-normal tracking-tight text-zinc-800 dark:text-zinc-200 sm:text-4xl sm:leading-relaxed'>
           <motion.p variants={itemVariants}>你好👋，我是XiaoXueHai，</motion.p>

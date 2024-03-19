@@ -48,10 +48,11 @@ function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
   const radius = useMotionValue(0);
   const handleMouseMove = useCallback(
     ({ clientX, clientY, currentTarget }: MouseEvent) => {
-      const bounds = currentTarget.getBoundingClientRect();
-      mouseX.set(clientX - bounds.left);
-      mouseY.set(clientY - bounds.top);
-      radius.set(Math.sqrt(bounds.width ** 2 + bounds.height ** 2) / 2.5);
+      const { left, top, width, height } =
+        currentTarget.getBoundingClientRect();
+      mouseX.set(clientX - left);
+      mouseY.set(clientY - top);
+      radius.set(Math.sqrt(width ** 2 + height ** 2) / 2.5);
     },
     [mouseX, mouseY, radius],
   );
@@ -70,7 +71,7 @@ function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
       )}
       {...rest}
     >
-      <motion.div
+      <motion.span
         className='pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100'
         style={{ background }}
       />

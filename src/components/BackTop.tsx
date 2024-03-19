@@ -24,7 +24,7 @@ export function BackTop() {
   useMotionValueEvent(scrollY, 'change', latest => {
     setScrollTop(latest);
   });
-  const show = useMemo(() => scrollTop > 500, [scrollTop]);
+  const show = useMemo(() => scrollTop > 100, [scrollTop]);
   const animate = useMemo(() => (show ? Animate.Show : Animate.Hidden), [show]);
 
   function handleBackTop() {
@@ -35,8 +35,8 @@ export function BackTop() {
     <AnimatePresence>
       {show && (
         <motion.div
-          className='fixed bottom-8 right-8 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl bg-white/70
-        shadow-lg shadow-black/5 ring-1
+          className='fixed bottom-8 right-8 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl bg-white/70 
+          shadow-lg shadow-black/5 ring-1
         ring-zinc-400/20 backdrop-blur active:shadow-none dark:bg-white/10
         dark:shadow-none sm:bottom-16 sm:right-16'
           initial={Animate.Hidden}

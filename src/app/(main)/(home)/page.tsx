@@ -12,6 +12,8 @@ import {
 
 import { Container } from '@/components/Container';
 import { ShimmerButton } from '@/components/ShimmerButton';
+// import { ToastAction } from '@/components/ui/toast';
+// import { useToast } from '@/components/ui/use-toast';
 import { Animate } from '@/enum';
 
 export default function Page() {
@@ -46,6 +48,17 @@ export default function Page() {
       {children}
     </div>
   );
+
+  // const { toast } = useToast();
+
+  // useEffect(() => {
+  //   toast({
+  //     title: '提示',
+  //     description: '网站目前正在重构中，样式正在持续优化，博客数据正在迁移中',
+  //     action: <ToastAction altText='我知道了'>我知道了</ToastAction>,
+  //     // duration: 0,
+  //   });
+  // }, [toast]);
   return (
     <Container>
       <motion.div
@@ -55,7 +68,7 @@ export default function Page() {
         className='h-full px-4 pt-8 sm:pt-32'
       >
         <header className='text-3xl font-bold leading-normal tracking-tight text-zinc-800 dark:text-zinc-200 sm:text-4xl sm:leading-relaxed'>
-          <motion.p variants={itemVariants}>你好👋，我是XiaoXueHai，</motion.p>
+          <motion.p variants={itemVariants}>你好👋，我是肖学海，</motion.p>
           <motion.p variants={itemVariants}>
             在这里我会分享开发过程中所遇到问题与解决方案。
           </motion.p>

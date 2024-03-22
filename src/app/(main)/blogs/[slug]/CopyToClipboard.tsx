@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactElement } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
-import { clsxm } from '@/lib/clsxm';
+import { cn } from '@/lib';
 
 export function CopyIcon(props: ComponentProps<'svg'>): ReactElement {
   return (
@@ -92,7 +92,7 @@ export const CopyToClipboard = ({
       title='复制代码'
       tabIndex={0}
       {...rest}
-      className={clsxm(
+      className={cn(
         'bg-opacity-[.85] backdrop-blur-md transition-all active:opacity-50 dark:bg-opacity-80',
         'bg-primary-700/5 rounded-md border border-black/5 p-1.5 text-gray-600 hover:text-gray-900',
         'dark:bg-primary-300/10 dark:border-white/10 dark:text-gray-400 dark:hover:text-gray-50',

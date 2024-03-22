@@ -9,9 +9,18 @@ import {
   type PropsWithChildren,
   MouseEvent,
 } from 'react';
+// import { FaAngleDown } from 'react-icons/fa';
 
+// import {
+//   Dialog,
+//   DialogClose,
+//   DialogContent,
+//   DialogHeader,
+//   DialogTitle,
+//   DialogTrigger,
+// } from '@/components/ui/dialog';
 import { NAVIGATION_ITEMS } from '@/config/app';
-import { clsxm } from '@/lib/clsxm';
+import { cn } from '@/lib';
 
 function DesktopNavItem({
   href,
@@ -24,7 +33,7 @@ function DesktopNavItem({
     <li>
       <NextLink
         href={href}
-        className={clsxm(
+        className={cn(
           'relative flex h-full items-center whitespace-nowrap px-3 py-2 transition',
           isActive
             ? ' text-teal-500 dark:text-teal-400'
@@ -42,6 +51,52 @@ function DesktopNavItem({
     </li>
   );
 }
+// function MobileNavItem({
+//   href,
+//   children,
+// }: {
+//   href: string;
+//   children: React.ReactNode;
+// }) {
+//   return (
+//     <li>
+//       <NextLink href={href} className='block py-3'>
+//         {children}
+//       </NextLink>
+//     </li>
+//   );
+// }
+
+// function Mobile({ className }: { className: string }) {
+//   return (
+//     <Dialog>
+//       <DialogTrigger
+//         className={cn(
+//           'group flex w-20 items-center justify-between rounded-full bg-gradient-to-b from-zinc-50/50 to-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:from-zinc-900/50 dark:to-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20',
+//           className,
+//         )}
+//       >
+//         前往
+//         <FaAngleDown />
+//       </DialogTrigger>
+//       <DialogContent className='top-48 w-11/12 divide-zinc-500/20 rounded-3xl px-8 py-6 shadow-none'>
+//         <DialogHeader>
+//           <DialogTitle className='text-base'>站内导航</DialogTitle>
+//         </DialogHeader>
+
+//         <nav className='mt-6'>
+//           <ul className='-my-2 divide-y divide-zinc-500/20 text-base  dark:divide-zinc-100/5'>
+//             {NAVIGATION_ITEMS.map(({ href, text }) => (
+//               <MobileNavItem key={href} href={href}>
+//                 <DialogClose className='w-full text-left'>{text}</DialogClose>
+//               </MobileNavItem>
+//             ))}
+//           </ul>
+//         </nav>
+//       </DialogContent>
+//     </Dialog>
+//   );
+// }
 function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -61,7 +116,7 @@ function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
   return (
     <nav
       onMouseMove={handleMouseMove}
-      className={clsxm(
+      className={cn(
         'group relative',
         'rounded-full bg-gradient-to-b from-zinc-50/70 to-white/90',
         'shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md',
@@ -89,7 +144,8 @@ function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
 export function NavigationBar() {
   return (
     <>
-      <Desktop />
+      <Desktop className='hidden md:block' />
+      {/* <Mobile className='md:hidden' /> */}
     </>
   );
 }

@@ -4,7 +4,7 @@ import { type Variants, motion, useScroll } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { Animate } from '@/enum';
-import { clsxm } from '@/lib/clsxm';
+import { cn } from '@/lib';
 
 export type Headling = {
   text: string | null;
@@ -94,7 +94,7 @@ export function TableOfContents({ headings }: { headings: Headling[] }) {
               duration: 0.2,
             },
           }}
-          className={clsxm(
+          className={cn(
             'truncate text-sm font-medium text-zinc-700 transition-colors duration-200 hover:scale-105 hover:font-bold hover:text-zinc-900 dark:text-zinc-400 hover:dark:text-zinc-100',
             item.level === 'h3' && 'ml-2',
             item.level === 'h4' && 'ml-3',

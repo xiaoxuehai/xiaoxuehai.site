@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactElement } from 'react';
 import { useRef } from 'react';
 
-import { clsxm } from '@/lib/clsxm';
+import { cn } from '@/lib';
 
 import { CopyToClipboard } from './CopyToClipboard';
 export const Pre = ({
@@ -25,7 +25,7 @@ export const Pre = ({
       </div>
 
       <pre
-        className={clsxm(
+        className={cn(
           'overflow-x-auto rounded-xl !bg-gray-100/50 subpixel-antialiased',
           'contrast-more:border-primary-900/20 contrast-more:dark:border-primary-100/40 p-5 pt-10 contrast-more:border contrast-more:contrast-150',
           className,

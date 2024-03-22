@@ -1,2 +1,2 @@
-export * from './clsxm';
+export * from './clsx';
 export * from './mdx';

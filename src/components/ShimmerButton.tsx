@@ -4,7 +4,7 @@ import type {
   ComponentPropsWithoutRef,
 } from 'react';
 
-import { clsxm } from '@/lib/clsxm';
+import { cn } from '@/lib';
 
 export type ShimmerButtonProps = PropsWithChildren &
   ComponentPropsWithoutRef<'button'> & {
@@ -37,7 +37,7 @@ export function ShimmerButton({
           '--bg': background,
         } as CSSProperties
       }
-      className={clsxm(
+      className={cn(
         'group relative flex cursor-pointer overflow-hidden whitespace-nowrap px-6 py-3 text-white [background:var(--bg)] [border-radius:var(--radius)] dark:text-black ',
         'transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_8px_rgba(62,61,117,0.7)]',
         className,

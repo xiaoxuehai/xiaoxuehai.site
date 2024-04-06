@@ -1,13 +1,18 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter as FontSans } from 'next/font/google';
 
 import { ThemeProvider } from '@/app/ThemeProvider';
 import { BackTop } from '@/components/BackTop';
-// import { Toaster } from '@/components/ui/toaster';
+
+import { Toaster } from '@/components/ui/toaster';
+import { cn } from '@/lib/utils';
 
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const fontSans = FontSans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
 
 export const metadata: Metadata = {
   title: '个人网站',
@@ -21,7 +26,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased',
+          fontSans.variable,
+        )}
+      >
         <ThemeProvider
           attribute='class'
           defaultTheme='light'
@@ -31,7 +41,7 @@ export default function RootLayout({
           {children}
           <BackTop />
         </ThemeProvider>
-        {/* <Toaster /> */}
+        <Toaster />
       </body>
     </html>
   );

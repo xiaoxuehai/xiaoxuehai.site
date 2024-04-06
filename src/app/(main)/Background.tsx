@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithoutRef } from 'react';
 
-import { cn } from '@/lib';
+import { cn } from '@/lib/utils';
 
 import $styles from './background.module.css';
 

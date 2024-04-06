@@ -20,7 +20,7 @@ import {
 //   DialogTrigger,
 // } from '@/components/ui/dialog';
 import { NAVIGATION_ITEMS } from '@/config/app';
-import { cn } from '@/lib';
+import { cn } from '@/lib/utils';
 
 function DesktopNavItem({
   href,

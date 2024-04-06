@@ -1,7 +1,7 @@
 import type { ComponentProps, ReactElement } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 
-import { cn } from '@/lib';
+import { cn } from '@/lib/utils';
 
 export function CopyIcon(props: ComponentProps<'svg'>): ReactElement {
   return (

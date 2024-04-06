@@ -13,7 +13,7 @@ import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
 import { Container } from '@/components/Container';
-import type { Frontmatter } from '@/lib';
+import type { Frontmatter } from '@/lib/mdx';
 import { CONTENT_DIR, getAdjacentFile } from '@/lib/mdx';
 
 import { BlogContent } from './BlogContent';

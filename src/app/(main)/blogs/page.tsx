@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 import { Container } from '@/components/Container';
-import { type BlogItem, getAllFilesFrontmatter } from '@/lib';
+import { type BlogItem, getAllFilesFrontmatter } from '@/lib/mdx';
 
 import { BlogList, type FormatedBlogItem } from './BlogList';
 

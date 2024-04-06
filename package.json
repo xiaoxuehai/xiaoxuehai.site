@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:lint-staged": "lint-staged",
-    "lint:eslint": "eslint --cache --max-warnings 0  \"*.{js,jsx,ts,tsx}\" --fix",
-    "lint:prettier": "prettier --write  \"*.{js,jsx,json,ts,tsx,css,html,md,mdx}\"",
+    "lint:eslint": "eslint --cache --max-warnings 0  \"**/*.{js,jsx,ts,tsx}\" --fix",
+    "lint:prettier": "prettier --write  \"**/*.{js,jsx,json,ts,tsx,css,html,md,mdx}\"",
     "clean:lib": "rimraf node_modules",
     "typecheck": "tsc --noEmit",
     "prepare": "husky install"
@@ -17,6 +17,7 @@
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
     "@shikijs/rehype": "^1.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

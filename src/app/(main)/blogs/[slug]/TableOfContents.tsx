@@ -4,7 +4,7 @@ import { type Variants, motion, useScroll } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { Animate } from '@/enum';
-import { cn } from '@/lib';
+import { cn } from '@/lib/utils';
 
 export type Headling = {
   text: string | null;

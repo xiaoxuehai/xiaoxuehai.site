@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-import type { BlogItem } from '@/lib';
+import type { BlogItem } from '@/lib/mdx';
 
 import { MDXContent } from './MDXContent';
 import { Headling, TableOfContents } from './TableOfContents';

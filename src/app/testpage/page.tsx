@@ -1,10 +1,10 @@
 'use client';
+
 import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/use-toast';
-
-export default function Home() {
+export default function Index() {
   const { toast } = useToast();
 
   return (

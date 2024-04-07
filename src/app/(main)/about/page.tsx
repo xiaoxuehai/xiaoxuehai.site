@@ -78,8 +78,8 @@ export default function About() {
         <ul>
           <li>
             <div>
-              一个前端开发工程师（2020年 - 至今），目前从事于 toB
-              行业，喜欢学习新技术，我的技能 👇🏻
+              一个前端开发工程师（2020年 -
+              至今），目前从事于医疗行业，喜欢学习新技术，我的技能 👇🏻
             </div>
 
             <div className='mb-6 flex flex-wrap items-start gap-3'>

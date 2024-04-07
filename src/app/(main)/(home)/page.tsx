@@ -86,18 +86,22 @@ export default function Page() {
             className='mt-8 flex gap-6 text-2xl'
           >
             <IconWrapper>
-              <a href='' target='_blank'>
+              <a href='https://github.com/xiaoxuehai' target='_blank'>
                 <AiOutlineGithub />
               </a>
             </IconWrapper>
             <IconWrapper>
-              <AiOutlineQq />
+              <a href='https://qm.qq.com/q/YYRuYQp8IY' target='_blank'>
+                <AiOutlineQq />
+              </a>
             </IconWrapper>
             <IconWrapper>
-              <AiFillWechat />
+              <AiFillWechat title='Ephemerallllll' />
             </IconWrapper>
             <IconWrapper>
-              <AiFillMail />
+              <a href='mailto:1379228273@qq.com' target='_blank'>
+                <AiFillMail title='1379228273@qq.com' />
+              </a>
             </IconWrapper>
           </motion.div>
         </div>

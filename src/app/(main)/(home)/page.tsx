@@ -1,8 +1,7 @@
 'use client';
 import { motion, type Variants } from 'framer-motion';
 import NextLink from 'next/link';
-
-import { PropsWithChildren } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
 import {
   AiFillMail,
   AiFillWechat,
@@ -12,9 +11,9 @@ import {
 
 import { Container } from '@/components/Container';
 import { ShimmerButton } from '@/components/ShimmerButton';
-// import { ToastAction } from '@/components/ui/toast';
-// import { useToast } from '@/components/ui/use-toast';
+import { site } from '@/config/site';
 import { Animate } from '@/enum';
+import { cn } from '@/lib/utils';
 
 export default function Page() {
   const listVariants: Variants = {
@@ -43,22 +42,21 @@ export default function Page() {
       transition: { duration: 0.4 },
     },
   };
-  const IconWrapper = ({ children }: PropsWithChildren) => (
-    <div className='cursor-pointer text-zinc-500 transition hover:text-zinc-800 dark:text-zinc-200 dark:hover:text-zinc-500'>
+  const IconWrapper = ({
+    children,
+    className,
+    ...rest
+  }: ComponentPropsWithoutRef<'a'>) => (
+    <a
+      className={cn(
+        className,
+        'text-zinc-500 transition hover:text-zinc-800 dark:text-zinc-200 dark:hover:text-zinc-500',
+      )}
+      {...rest}
+    >
       {children}
-    </div>
+    </a>
   );
-
-  // const { toast } = useToast();
-
-  // useEffect(() => {
-  //   toast({
-  //     title: '提示',
-  //     description: '网站目前正在重构中，样式正在持续优化，博客数据正在迁移中',
-  //     action: <ToastAction altText='我知道了'>我知道了</ToastAction>,
-  //     // duration: 0,
-  //   });
-  // }, [toast]);
   return (
     <Container>
       <motion.div
@@ -68,7 +66,7 @@ export default function Page() {
         className='h-full px-4 pt-8 sm:pt-32'
       >
         <header className='text-3xl font-bold leading-normal tracking-tight text-zinc-800 dark:text-zinc-200 sm:text-4xl sm:leading-relaxed'>
-          <motion.p variants={itemVariants}>你好👋，我是肖学海，</motion.p>
+          <motion.p variants={itemVariants}>你好👋，我是{site.name}，</motion.p>
           <motion.p variants={itemVariants}>
             在这里我会分享开发过程中所遇到问题与解决方案。
           </motion.p>
@@ -85,23 +83,17 @@ export default function Page() {
             variants={itemVariants}
             className='mt-8 flex gap-6 text-2xl'
           >
-            <IconWrapper>
-              <a href='https://github.com/xiaoxuehai' target='_blank'>
-                <AiOutlineGithub />
-              </a>
+            <IconWrapper href={site.github} target='_blank'>
+              <AiOutlineGithub />
             </IconWrapper>
-            <IconWrapper>
-              <a href='https://qm.qq.com/q/YYRuYQp8IY' target='_blank'>
-                <AiOutlineQq />
-              </a>
+            <IconWrapper href={site.qq} target='_blank'>
+              <AiOutlineQq />
             </IconWrapper>
-            <IconWrapper>
-              <AiFillWechat title='Ephemerallllll' />
+            <IconWrapper href={site.wechat} target='_blank'>
+              <AiFillWechat />
             </IconWrapper>
-            <IconWrapper>
-              <a href='mailto:1379228273@qq.com' target='_blank'>
-                <AiFillMail title='1379228273@qq.com' />
-              </a>
+            <IconWrapper href={`mailto:${site.email}`} target='_blank'>
+              <AiFillMail />
             </IconWrapper>
           </motion.div>
         </div>

@@ -6,10 +6,11 @@ import { X } from 'lucide-react';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  useCallback,
-  type HTMLAttributes,
   type PropsWithChildren,
-  MouseEvent,
+  type MouseEvent,
+  useEffect,
+  useCallback,
+  useState,
 } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
 
@@ -20,7 +21,7 @@ import {
   DialogTrigger,
   DialogOverlay,
 } from '@/components/ui/dialog';
-import { NAVIGATION_ITEMS } from '@/config/app';
+import { navigation } from '@/config/navigation';
 import { cn } from '@/lib/utils';
 
 function DesktopNavItem({
@@ -35,7 +36,7 @@ function DesktopNavItem({
       <NextLink
         href={href}
         className={cn(
-          'relative flex h-full items-center whitespace-nowrap px-3 py-2 transition',
+          'relative flex h-full items-center whitespace-nowrap px-3 py-2 transition duration-300',
           isActive
             ? ' text-teal-500 dark:text-teal-400'
             : 'hover:text-teal-500 dark:hover:text-teal-400',
@@ -68,15 +69,10 @@ function MobileNavItem({
   );
 }
 
-function Mobile({ className }: { className: string }) {
+function Mobile() {
   return (
     <Dialog>
-      <DialogTrigger
-        className={cn(
-          'group flex w-20 items-center justify-between rounded-full bg-gradient-to-b from-zinc-50/50 to-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:from-zinc-900/50 dark:to-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20',
-          className,
-        )}
-      >
+      <DialogTrigger className='group flex w-20 items-center justify-between rounded-full bg-gradient-to-b from-zinc-50/50 to-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:from-zinc-900/50 dark:to-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20'>
         前往
         <FaAngleDown />
       </DialogTrigger>
@@ -95,7 +91,7 @@ function Mobile({ className }: { className: string }) {
 
         <nav className='mt-4'>
           <ul className='-my-2 divide-y divide-zinc-500/20 text-base  dark:divide-zinc-100/5'>
-            {NAVIGATION_ITEMS.map(({ href, text }) => (
+            {navigation.map(({ href, text }) => (
               <MobileNavItem key={href} href={href}>
                 <DialogClose className='w-full text-left'>{text}</DialogClose>
               </MobileNavItem>
@@ -106,7 +102,7 @@ function Mobile({ className }: { className: string }) {
     </Dialog>
   );
 }
-function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
+function Desktop() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const radius = useMotionValue(0);
@@ -116,7 +112,7 @@ function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
         currentTarget.getBoundingClientRect();
       mouseX.set(clientX - left);
       mouseY.set(clientY - top);
-      radius.set(Math.sqrt(width ** 2 + height ** 2) / 2.5);
+      radius.set(Math.sqrt(width ** 2 + height ** 2) / 3);
     },
     [mouseX, mouseY, radius],
   );
@@ -131,9 +127,7 @@ function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
         'shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur-md',
         'dark:from-zinc-900/70 dark:to-zinc-800/90 dark:ring-zinc-100/10',
         '[--spotlight-color:rgb(20,184,166,0.1)] dark:[--spotlight-color:rgb(20,184,166,0.3)]',
-        className,
       )}
-      {...rest}
     >
       <motion.span
         className='pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-500 group-hover:opacity-100'
@@ -141,7 +135,7 @@ function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
       />
 
       <ul className='flex h-full px-3 text-sm font-medium text-zinc-800 dark:text-zinc-200'>
-        {NAVIGATION_ITEMS.map(({ href, text }) => (
+        {navigation.map(({ href, text }) => (
           <DesktopNavItem key={href} href={href}>
             {text}
           </DesktopNavItem>
@@ -151,10 +145,19 @@ function Desktop({ className, ...rest }: HTMLAttributes<HTMLDivElement>) {
   );
 }
 export function NavigationBar() {
-  return (
-    <>
-      <Desktop className='hidden md:block' />
-      <Mobile className='md:hidden' />
-    </>
-  );
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(min-width: 768px)');
+    const handleMediaQueryChange = (event: MediaQueryListEvent) => {
+      setIsDesktop(event.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleMediaQueryChange);
+    setIsDesktop(mediaQuery.matches);
+    return () => {
+      mediaQuery.removeEventListener('change', handleMediaQueryChange);
+    };
+  }, []);
+
+  return isDesktop ? <Desktop /> : <Mobile />;
 }

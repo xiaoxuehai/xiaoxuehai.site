@@ -6,6 +6,7 @@ import NextLink from 'next/link';
 import React from 'react';
 
 import { Container } from '@/components/Container';
+import { site } from '@/config/site';
 import { Animate } from '@/enum';
 
 export default function About() {
@@ -56,9 +57,9 @@ export default function About() {
       content: (
         <ul>
           <li>
-            搭建它的初衷主要是为了体验NextJs的一些新特性，其次是记录笔记 +
+            搭建它的初衷主要是为了体验next.js的一些新特性，其次是记录笔记 +
             分享一些平时遇到的问题解决经验，本站技术栈为
-            Next.js、TypeScript、TailwindCSS、MDX
+            next.js、typescript、tailwindcss、mdx、framer-motion
           </li>
         </ul>
       ),
@@ -67,8 +68,8 @@ export default function About() {
       title: '📜 本站历史',
       content: (
         <ul>
-          <li>2023 - 至今，使用 Next.js 开发，部署在 Vercel</li>
-          <li>2020 - 2021，初版使用 Hexo 搭建，部署在腾讯云服务器</li>
+          <li>2023 - 至今，使用 next.js 开发，部署在 vercel</li>
+          <li>2020 - 2021，初版使用 hexo 搭建，部署在腾讯云服务器</li>
         </ul>
       ),
     },
@@ -102,14 +103,12 @@ export default function About() {
         <ul>
           <li>
             Email-
-            <NextLink href='mailto:1379228273@qq.com'>
-              1379228273@qq.com
-            </NextLink>
+            <NextLink href='mailto:1379228273@qq.com'>{site.email}</NextLink>
           </li>
           <li>
             Github-
-            <a href='https://github.com/xiaoxuehai'>
-              https://github.com/xiaoxuehai
+            <a href='https://github.com/xiaoxuehai' target='_blank'>
+              {site.github}
             </a>
           </li>
         </ul>

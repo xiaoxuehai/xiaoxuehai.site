@@ -1,18 +1,27 @@
 'use client';
 import type { Variants } from 'framer-motion';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
 
 import { AiFillGithub, AiOutlineGlobal } from 'react-icons/ai';
 
-import { FaReact } from 'react-icons/fa';
-
+import NestIcon from '@/assets/icons/nest.svg';
+import NextIcon from '@/assets/icons/next.svg';
+import ReactIcon from '@/assets/icons/react.svg';
+import VueIcon from '@/assets/icons/vue.svg';
 import { Animate } from '@/enum';
 
 import { projects } from './data';
 export type ProjectListProps = {
   data: typeof projects;
+};
+const icons = {
+  vue: VueIcon,
+  react: ReactIcon,
+  next: NextIcon,
+  nest: NestIcon,
 };
 export function ProjectList({ data }: ProjectListProps) {
   const listVariants: Variants = {
@@ -50,7 +59,6 @@ export function ProjectList({ data }: ProjectListProps) {
       },
     },
   };
-
   return (
     <motion.ul
       className='grid grid-cols-1 gap-8 py-10 sm:grid-cols-2 sm:gap-12 sm:py-16 lg:grid-cols-3'
@@ -68,7 +76,12 @@ export function ProjectList({ data }: ProjectListProps) {
 
           <div className='relative z-10'>
             <div className='flex h-12 w-12 items-center justify-center rounded-full bg-white text-3xl shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0'>
-              <FaReact />
+              <Image
+                src={icons[item.framework as keyof typeof icons]}
+                width={40}
+                height={40}
+                alt=''
+              />
             </div>
             <div className='mt-6 flex w-full items-center justify-between'>
               <h2 className='text-base font-semibold text-zinc-800 dark:text-zinc-100'>

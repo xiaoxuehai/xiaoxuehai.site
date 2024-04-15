@@ -103,11 +103,11 @@ export default function About() {
         <ul>
           <li>
             Email-
-            <NextLink href='mailto:1379228273@qq.com'>{site.email}</NextLink>
+            <NextLink href={`mailto:${site.email}`}>{site.email}</NextLink>
           </li>
           <li>
             Github-
-            <a href='https://github.com/xiaoxuehai' target='_blank'>
+            <a href={site.github} target='_blank'>
               {site.github}
             </a>
           </li>

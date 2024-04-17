@@ -71,7 +71,7 @@ export function BlogContent({ code, prev, next }: BlogContentProps) {
           className='sticky top-24'
           style={{ maxHeight: 'calc(100vh - 320px)' }}
         >
-          {headings?.length && <TableOfContents headings={headings} />}
+          {!!headings?.length && <TableOfContents headings={headings} />}
         </div>
       </aside>
     </div>

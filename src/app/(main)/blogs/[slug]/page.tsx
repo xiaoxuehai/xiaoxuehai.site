@@ -1,11 +1,10 @@
-import { readFile, access } from 'fs/promises';
+import { readFile } from 'fs/promises';
 import path from 'path';
 
 import rehypeShiki, { type RehypeShikiOptions } from '@shikijs/rehype';
 import dayjs from 'dayjs';
 import { bundleMDX } from 'mdx-bundler';
 import NextLink from 'next/link';
-import { notFound } from 'next/navigation';
 import { FiCalendar, FiClock, FiRefreshCw, FiTag } from 'react-icons/fi';
 // import rehypeAutolinkHeadings, { Options } from 'rehype-autolink-headings';
 import readingTime from 'reading-time';
@@ -24,11 +23,13 @@ export default async function BlogDetail({
 }) {
   const slug = decodeURIComponent(params.slug);
   const filePath = `/${CONTENT_DIR}/blogs/${slug}.mdx`;
-  try {
-    await access(filePath);
-  } catch (error) {
-    notFound();
-  }
+  //   try {
+  //     await access(filePath);
+  //   } catch (error) {
+  //     console.log(error, 'error');
+
+  //     notFound();
+  //   }
 
   const source = (
     await readFile(path.join(process.cwd(), filePath))

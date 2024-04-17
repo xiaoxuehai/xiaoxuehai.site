@@ -19,7 +19,6 @@ export function Header() {
   const prevScrollY = useRef(0);
   const [animate, setAnimate] = useState<Animate>(Animate.Show);
   const { scrollY } = useScroll();
-
   useMotionValueEvent(scrollY, 'change', latest => {
     setAnimate(prevScrollY.current > latest ? Animate.Show : Animate.Hidden);
     prevScrollY.current = latest;

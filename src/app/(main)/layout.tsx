@@ -1,10 +1,12 @@
-import type { PropsWithChildren } from 'react';
+import { type PropsWithChildren } from 'react';
 
 import { Background } from './Background';
 import { Header } from './Header';
+import Toaster from './Toaster';
 export default function MainLayout({ children }: PropsWithChildren) {
   return (
     <>
+      <Toaster />
       <div className='relative z-50 flex min-h-screen flex-col'>
         <Header />
         <main className='flex-1'>{children}</main>

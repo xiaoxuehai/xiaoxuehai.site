@@ -11,10 +11,10 @@ import {
 
 import { Container } from '@/components/Container';
 import { ShimmerButton } from '@/components/ShimmerButton';
+
 import { site } from '@/config/site';
 import { Animate } from '@/enum';
 import { cn } from '@/lib/utils';
-
 export default function Page() {
   const listVariants: Variants = {
     [Animate.Hidden]: {

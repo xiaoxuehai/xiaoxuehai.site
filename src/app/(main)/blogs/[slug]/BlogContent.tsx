@@ -1,18 +1,20 @@
 'use client';
+import { uniqBy } from 'lodash-es';
 import NextLink from 'next/link';
 import { useEffect, useState } from 'react';
-
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import type { BlogItem } from '@/lib/mdx';
 
+import type { Headling } from './TableOfContents';
+
 import { MDXContent } from './MDXContent';
-import { Headling, TableOfContents } from './TableOfContents';
-export type BlogContentProps = {
+import { TableOfContents } from './TableOfContents';
+export interface BlogContentProps {
   code: string;
   prev: BlogItem | null;
   next: BlogItem | null;
-};
+}
 export function BlogContent({ code, prev, next }: BlogContentProps) {
   const [headings, setHeadings] = useState<Headling[]>([]);
 
@@ -25,10 +27,11 @@ export function BlogContent({ code, prev, next }: BlogContentProps) {
       .filter(element => element.id)
       .map(element => ({
         id: element.id,
-        text: element.id,
+        text: element.textContent,
         level: element.tagName.toLocaleLowerCase(),
       }));
-    setHeadings(headings);
+
+    setHeadings(uniqBy(headings, 'id'));
   }, [code]);
   return (
     <div className='flex w-full justify-between'>
@@ -66,7 +69,7 @@ export function BlogContent({ code, prev, next }: BlogContentProps) {
         </div>
       </article>
 
-      <aside className='hidden w-52 flex-shrink-0 py-10 pl-6 md:block'>
+      <aside className='hidden w-52 shrink-0 py-10 pl-4 md:block'>
         <div
           className='sticky top-24'
           style={{ maxHeight: 'calc(100vh - 320px)' }}

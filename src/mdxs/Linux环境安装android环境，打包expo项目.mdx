@@ -1,0 +1,34 @@
+---
+title: 'Linux环境安装android环境，打包expo项目'
+description: '介绍在 Linux 环境下搭建 Android 开发环境的完整流程，包括 Java SDK、Android SDK 等依赖的安装配置，以及如何将 Expo 项目打包为 Android 应用的具体步骤。'
+date: '2025-09-07'
+tags:
+  - Linux
+  - Android
+  - Expo
+---
+
+### 1.安装java jdk
+
+#### 1.1下载java jdk
+
+```bash
+wget ​https://d10.injdk.cn/openjdk/openjdk/17/openjdk-17.0.1_linux-x64_bin.tar.gz​
+```
+
+#### 1.2解压压缩包到指定目录，新建/app/java目录，解压压缩包，最终jdk的完整路径是/app/java/jdk-17.0.1
+
+#### 1.3配置java jdk环境变量
+
+```bash filename="~/.bashrc"
+# ~/.bashrc
+export JAVA_HOME=/usr/lib/jvm/jdk-17.0.15-oracle-x64
+export PATH=$JAVA_HOME/bin:$PATH
+```
+
+#### 1.4验证java jdk环境变量是否配置成功
+
+```bash
+javac --version
+# 正常输出版本号则说明已成功安装
+```

@@ -76,7 +76,25 @@
     scroll-behavior: smooth;
   }
 }
+@layer utilities {
+  /* 定义旋转动画 */
+  @keyframes wave {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
 
+  /* 注册为 Tailwind 工具类 */
+  .animate-wave {
+    animation: wave 0.75s infinite;
+  }
+}
 .shiki,
 .shiki span {
   /* Optional, if you also want font styles */

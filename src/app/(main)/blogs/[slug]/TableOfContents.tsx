@@ -1,16 +1,18 @@
 'use client';
 
-import { type Variants, motion, useScroll } from 'framer-motion';
+import type { Variants } from 'framer-motion';
+
+import { motion, useScroll } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { Animate } from '@/enum';
 import { cn } from '@/lib/utils';
 
-export type Headling = {
+export interface Headling {
   text: string | null;
   level: string;
   id: string;
-};
+}
 const listVariants: Variants = {
   [Animate.Hidden]: {
     opacity: 0,
@@ -95,15 +97,19 @@ export function TableOfContents({ headings }: { headings: Headling[] }) {
             },
           }}
           className={cn(
-            'truncate text-sm font-medium text-zinc-700 transition-colors duration-200 hover:scale-105 hover:font-bold hover:text-zinc-900 dark:text-zinc-400 hover:dark:text-zinc-100',
+            'text-sm font-medium text-zinc-700 transition-colors duration-200 hover:scale-105 hover:font-bold hover:text-zinc-900 dark:text-zinc-400 hover:dark:text-zinc-100',
             item.level === 'h3' && 'ml-2',
-            item.level === 'h4' && 'ml-3',
-            item.level === 'h5' && 'ml-4',
+            item.level === 'h4' && 'ml-4',
+            item.level === 'h5' && 'ml-6',
             item.id === highlightedHeadingId &&
               'font-bold text-zinc-900 dark:text-zinc-100',
           )}
         >
-          <a href={`#${item.id}`} className='block w-full'>
+          <a
+            href={`#${item.id}`}
+            className='block w-full truncate'
+            title={item.text!}
+          >
             {item.text}
           </a>
         </motion.li>

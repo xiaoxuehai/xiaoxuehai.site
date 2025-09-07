@@ -1,7 +1,8 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
+import type { Variants } from 'framer-motion';
 
+import { motion } from 'framer-motion';
 import NextLink from 'next/link';
 import React from 'react';
 
@@ -83,7 +84,7 @@ export default function About() {
               至今），目前从事于医疗行业，喜欢学习新技术，我的技能 👇🏻
             </div>
 
-            <div className='mb-6 flex flex-wrap items-start gap-3'>
+            <div className='mb-6 mt-4 flex flex-wrap items-start gap-3'>
               {stack.map(item => (
                 <span
                   key={item}

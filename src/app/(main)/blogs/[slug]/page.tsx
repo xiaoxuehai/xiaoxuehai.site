@@ -1,35 +1,39 @@
-import { readFile } from 'fs/promises';
-import path from 'path';
+import type { RehypeShikiOptions } from '@shikijs/rehype';
+import type { Options } from 'rehype-autolink-headings';
 
-import rehypeShiki, { type RehypeShikiOptions } from '@shikijs/rehype';
+import rehypeShiki from '@shikijs/rehype';
 import dayjs from 'dayjs';
 import { bundleMDX } from 'mdx-bundler';
 import NextLink from 'next/link';
+import { notFound } from 'next/navigation';
+import { access, readFile } from 'node:fs/promises';
+import path from 'node:path';
+import process from 'node:process';
 import { FiCalendar, FiClock, FiRefreshCw, FiTag } from 'react-icons/fi';
-// import rehypeAutolinkHeadings, { Options } from 'rehype-autolink-headings';
 import readingTime from 'reading-time';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
-import { Container } from '@/components/Container';
 import type { Frontmatter } from '@/lib/mdx';
+
+import { Container } from '@/components/Container';
 import { CONTENT_DIR, getAdjacentFile } from '@/lib/mdx';
 
 import { BlogContent } from './BlogContent';
-export default async function BlogDetail({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const slug = decodeURIComponent(params.slug);
-  const filePath = `/${CONTENT_DIR}/blogs/${slug}.mdx`;
-  //   try {
-  //     await access(filePath);
-  //   } catch (error) {
-  //     console.log(error, 'error');
 
-  //     notFound();
-  //   }
+export default async function BlogDetail(props: {
+  params: Promise<{ slug: string }>;
+}) {
+  const params = await props.params;
+  const slug = decodeURIComponent(params.slug);
+  const filePath = `/${CONTENT_DIR}/${slug}.mdx`;
+  try {
+    await access(path.join(process.cwd(), filePath));
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
 
   const source = (
     await readFile(path.join(process.cwd(), filePath))
@@ -43,7 +47,7 @@ export default async function BlogDetail({
         rehypePlugins: [
           ...(options.rehypePlugins ?? []),
           rehypeSlug,
-          //   [rehypeAutolinkHeadings, { behavior: 'wrap' } as Options],
+          [rehypeAutolinkHeadings, { behavior: 'wrap' } as Options],
           [
             rehypeShiki,
             {
@@ -67,7 +71,8 @@ export default async function BlogDetail({
 
   const readTimeResult = readingTime(source.replace(/\s/g, ''));
 
-  const { prev, next } = await getAdjacentFile('blogs', slug);
+  const { prev, next } = await getAdjacentFile(slug);
+
   return (
     <Container>
       <h1 className='mt-6 text-3xl font-medium !leading-snug text-black dark:text-white sm:text-5xl'>
@@ -101,7 +106,7 @@ export default async function BlogDetail({
         {frontmatter.tags?.map((tag: string) => (
           <NextLink
             key={tag}
-            className='flex items-center rounded-full bg-teal-500/15 px-2.5 py-0.5 font-medium text-primary text-teal-500 dark:text-teal-400'
+            className='flex items-center rounded-full bg-teal-500/15 px-2.5 py-0.5 font-medium text-teal-500 dark:text-teal-400'
             href={`/tags/${tag}`}
             prefetch={false}
           >

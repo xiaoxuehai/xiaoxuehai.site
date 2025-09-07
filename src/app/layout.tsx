@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
+
 import { Inter as FontSans } from 'next/font/google';
+import NextTopLoader from 'nextjs-toploader';
+import colors from 'tailwindcss/colors';
 
 import { ThemeProvider } from '@/app/ThemeProvider';
 import { BackTop } from '@/components/BackTop';
-
 import { Toaster } from '@/components/ui/toaster';
-import { cn } from '@/lib/utils';
 
 import './globals.css';
-
+import { cn } from '@/lib/utils';
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
@@ -38,6 +39,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <NextTopLoader color={colors.teal[500]} />
           {children}
           <BackTop />
         </ThemeProvider>

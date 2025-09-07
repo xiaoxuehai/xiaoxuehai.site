@@ -1,15 +1,14 @@
 import { Container } from '@/components/Container';
 
-import { Header } from './Header';
-
-import { ProjectList } from './ProjectList';
 import { projects } from './data';
+import { Header } from './Header';
+import { ProjectList } from './ProjectList';
 export default async function Projects() {
   return (
     <Container className='overflow-x-hidden'>
       <Header
-        title='我过去的项目经历'
-        description='我一直在做各种各样的项目，下面是我筛选出来我觉得还不错的项目合集，也是我在技术领域中努力实践和应用的最好见证。'
+        title='我的项目经历'
+        description='这些项目是我在前端开发领域的实践积累，覆盖前端多框架、移动端、后端服务等多个领域。'
       />
       <ProjectList data={projects} />
     </Container>

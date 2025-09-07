@@ -1,28 +1,18 @@
 'use client';
 import type { Variants } from 'framer-motion';
+
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
-
 import { AiFillGithub, AiOutlineGlobal } from 'react-icons/ai';
 
-import NestIcon from '@/assets/icons/nest.svg';
-import NextIcon from '@/assets/icons/next.svg';
-import ReactIcon from '@/assets/icons/react.svg';
-import VueIcon from '@/assets/icons/vue.svg';
 import { Animate } from '@/enum';
 
-import { projects } from './data';
-export type ProjectListProps = {
+import type { projects } from './data';
+export interface ProjectListProps {
   data: typeof projects;
-};
-const icons = {
-  vue: VueIcon,
-  react: ReactIcon,
-  next: NextIcon,
-  nest: NestIcon,
-};
+}
+
 export function ProjectList({ data }: ProjectListProps) {
   const listVariants: Variants = {
     [Animate.Hidden]: {
@@ -72,19 +62,10 @@ export function ProjectList({ data }: ProjectListProps) {
           variants={itemVariants}
           key={item.link + index}
         >
-          <div className='absolute -inset-x-4 -inset-y-4 z-0 scale-50 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:-inset-y-6 sm:rounded-2xl'></div>
+          <div className='absolute -inset-x-4 -inset-y-4 z-0 scale-50 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:-inset-y-6 sm:rounded-xl'></div>
 
           <div className='relative z-10'>
-            <div className='flex h-12 w-12 items-center justify-center rounded-full bg-white text-3xl shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0'>
-              <Image
-                className='rounded-full'
-                src={icons[item.framework as keyof typeof icons]}
-                width={40}
-                height={40}
-                alt=''
-              />
-            </div>
-            <div className='mt-6 flex w-full items-center justify-between'>
+            <div className='flex w-full items-center justify-between'>
               <h2 className='text-base font-semibold text-zinc-800 dark:text-zinc-100'>
                 {item.title}
               </h2>
@@ -113,7 +94,7 @@ export function ProjectList({ data }: ProjectListProps) {
             <p className='mt-2 text-sm text-zinc-600 dark:text-zinc-400'>
               {item.description}
             </p>
-            <p className='my-3 flex flex-wrap gap-1'>
+            <p className='mt-3 flex flex-wrap gap-1'>
               {item.tags.map((tag, index) => (
                 <span
                   key={index}

@@ -1,7 +1,8 @@
 'use client';
 
+import type { Variants } from 'framer-motion';
+
 import {
-  type Variants,
   AnimatePresence,
   motion,
   useMotionValueEvent,
@@ -35,10 +36,7 @@ export function BackTop() {
     <AnimatePresence>
       {show && (
         <motion.div
-          className='fixed bottom-8 right-8 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl bg-white/70 
-          shadow-lg shadow-black/5 ring-1
-        ring-zinc-400/20 backdrop-blur active:shadow-none dark:bg-white/10
-        dark:shadow-none sm:bottom-16 sm:right-16'
+          className='fixed bottom-8 right-8 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl bg-white/70 shadow-lg shadow-black/5 ring-1 ring-zinc-400/20 backdrop-blur active:shadow-none dark:bg-white/10 dark:shadow-none sm:bottom-16 sm:right-16'
           initial={Animate.Hidden}
           exit={Animate.Hidden}
           animate={animate}

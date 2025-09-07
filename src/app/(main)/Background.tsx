@@ -1,4 +1,6 @@
-import React, { ComponentPropsWithoutRef } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
+
+import React from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -14,13 +16,6 @@ export function Background({
       )}
       {...rest}
     >
-      <div
-        className='absolute z-[-1] h-full w-full [--gradient-color-1:rgba(0,0,0,1)] [--gradient-color-2:rgba(0,0,0,0.8)] [--gradient-color-3:rgba(0,0,0,0)] [--gradient-stop-1:60%] [--gradient-stop-2:85%] dark:[--gradient-color-1:rgba(255,255,255,1)] dark:[--gradient-color-2:rgba(255,255,255,0.8)] dark:[--gradient-color-3:rgba(255,255,255,0)] lg:[--gradient-stop-1:50%] lg:[--gradient-stop-2:90%]'
-        style={{
-          background:
-            'linear-gradient(180deg, var(--gradient-color-1) 0%, var(--gradient-color-2) var(--gradient-stop-1), var(--gradient-color-3) var(--gradient-stop-2), 100% transparent)',
-        }}
-      ></div>
       <span
         className='pointer-events-none absolute left-[-12.5%] z-20 h-[var(--lights-side-height)] w-1/4 rotate-[-15deg] rounded-b-[25%] rounded-t-[100%] opacity-20 blur-[125px]'
         style={{
@@ -38,7 +33,7 @@ export function Background({
         }}
       ></span>
       <span
-        className='pointer-events-none absolute right-[-12.5%] z-20 h-[var(--lights-side-height)] w-1/4 rotate-[-15deg] rounded-b-[25%] rounded-t-[100%] opacity-20 blur-[125px]'
+        className='pointer-events-none absolute right-[-12.5%] z-20 h-[var(--lights-side-height)] w-1/4 rotate-[-15deg] rounded-b-[25%] rounded-t-[100%] bg-[] opacity-20 blur-[125px]'
         style={{
           background:
             'linear-gradient(180deg, rgb(236 151 207 / 40%), #e92a67)',

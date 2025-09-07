@@ -1,8 +1,8 @@
 'use client';
 
 import { useTheme } from 'next-themes';
-import React, { useMemo, useState, useEffect } from 'react';
-import { BiSun, BiMoon } from 'react-icons/bi';
+import React, { useEffect, useMemo, useState } from 'react';
+import { BiMoon, BiSun } from 'react-icons/bi';
 
 const themes = [
   {
@@ -29,6 +29,7 @@ export function ThemeSwitch() {
   function toggleTheme() {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
   }
+
   if (!ThemeIcon) return null;
 
   if (!mounted) {

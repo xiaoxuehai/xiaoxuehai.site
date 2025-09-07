@@ -1,9 +1,13 @@
 import dayjs from 'dayjs';
 
-import { Container } from '@/components/Container';
-import { type BlogItem, getAllFilesFrontmatter } from '@/lib/mdx';
+import type { BlogItem } from '@/lib/mdx';
 
-import { BlogList, type FormatedBlogItem } from './BlogList';
+import { Container } from '@/components/Container';
+import { getAllFilesFrontmatter } from '@/lib/mdx';
+
+import type { FormatedBlogItem } from './BlogList';
+
+import { BlogList } from './BlogList';
 
 function formatBlogs(blogs: BlogItem[]) {
   const result: FormatedBlogItem[] = [];
@@ -26,7 +30,8 @@ function formatBlogs(blogs: BlogItem[]) {
   return result;
 }
 export default async function Blogs() {
-  const blogs = await getAllFilesFrontmatter('blogs');
+  const blogs = await getAllFilesFrontmatter();
+
   const formatedBlogs = formatBlogs(blogs);
 
   return (

@@ -1,11 +1,8 @@
 'use client';
 
-import {
-  type Variants,
-  motion,
-  useMotionValueEvent,
-  useScroll,
-} from 'framer-motion';
+import type { Variants } from 'framer-motion';
+
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import { useRef, useState } from 'react';

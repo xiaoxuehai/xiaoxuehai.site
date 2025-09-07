@@ -1,5 +1,5 @@
-/** @type {import('cz-git').UserConfig} */
-module.exports = {
+/** @type {import('@commitlint/types').UserConfig} */
+export default {
   ignores: [commit => commit.includes('init')],
   extends: ['@commitlint/config-conventional'],
   rules: {

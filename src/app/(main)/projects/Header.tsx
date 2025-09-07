@@ -1,12 +1,13 @@
 'use client';
 import type { Variants } from 'framer-motion';
+
 import { motion } from 'framer-motion';
 
 import { Animate } from '@/enum';
-export type HeaderProps = {
+export interface HeaderProps {
   title: string;
   description: string;
-};
+}
 export function Header({ title, description }: HeaderProps) {
   const variants: Variants = {
     [Animate.Hidden]: {

@@ -1,7 +1,8 @@
 'use client';
-import { MDXComponents } from 'mdx/types';
+import type { MDXComponents } from 'mdx/types';
+
 import { getMDXComponent } from 'mdx-bundler/client';
-import { type ReactElement, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import { Pre } from './Pre';
 export interface MDXContentProps {
@@ -10,7 +11,7 @@ export interface MDXContentProps {
 const components: MDXComponents = {
   //   img: NextImage,
   pre: ({ children, ...rest }) => {
-    const className = (children as ReactElement)?.props?.className;
+    const className = children?.props?.className;
     const lang = className?.replace('language-', '');
     return (
       <Pre {...rest} lang={lang}>

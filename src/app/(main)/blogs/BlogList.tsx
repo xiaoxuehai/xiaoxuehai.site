@@ -1,21 +1,22 @@
 'use client';
+import type { Variants } from 'framer-motion';
+
 import dayjs from 'dayjs';
-import { motion, type Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import NextLink from 'next/link';
-
 import { FiCalendar, FiTag } from 'react-icons/fi';
-
-import { Animate } from '@/enum';
 
 import type { BlogItem } from '@/lib/mdx';
 
-export type FormatedBlogItem = {
+import { Animate } from '@/enum';
+
+export interface FormatedBlogItem {
   blogs: BlogItem[];
   year: number;
-};
-export type BogListProps = {
+}
+export interface BogListProps {
   formatedBlogs: FormatedBlogItem[];
-};
+}
 export function BlogList({ formatedBlogs }: BogListProps) {
   const listVariants: Variants = {
     [Animate.Hidden]: {
@@ -80,7 +81,7 @@ export function BlogList({ formatedBlogs }: BogListProps) {
                   >
                     <h2>{frontmatter.title}</h2>
                   </NextLink>
-                  <div className='ml-2 flex h-7 flex-shrink-0 items-center text-sm leading-7 text-zinc-500 dark:text-zinc-300'>
+                  <div className='ml-2 flex h-7 shrink-0 items-center text-sm leading-7 text-zinc-500 dark:text-zinc-300'>
                     <FiCalendar className='mr-1 text-sm' />
                     <time>
                       {dayjs(frontmatter.date).format('YYYY年MM月DD日')}
@@ -91,7 +92,7 @@ export function BlogList({ formatedBlogs }: BogListProps) {
                   {frontmatter.tags?.map((tag: string) => (
                     <NextLink
                       key={tag}
-                      className='flex items-center rounded-full bg-teal-500/15 px-2.5 py-0.5 align-middle font-medium text-primary text-teal-500 dark:text-teal-400'
+                      className='flex items-center rounded-full bg-teal-500/15 px-2.5 py-0.5 align-middle font-medium text-teal-500 dark:text-teal-400'
                       href={`/tags/${tag}`}
                       prefetch={false}
                     >

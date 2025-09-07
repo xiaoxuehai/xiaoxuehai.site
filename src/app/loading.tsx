@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Loading() {
   return (
-    <div className='flex items-center justify-center py-10  text-sm text-zinc-600 dark:text-zinc-200'>
+    <div className='flex items-center justify-center py-10 text-sm text-zinc-600 dark:text-zinc-200'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24'

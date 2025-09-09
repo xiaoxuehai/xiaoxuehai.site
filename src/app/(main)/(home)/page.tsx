@@ -72,7 +72,7 @@ export default function Page() {
             <span className='animate-wave inline-block origin-bottom-right px-1'>
               👋
             </span>
-            ，我是一名前端开发者
+            ，我是一名前端开发者，
           </motion.p>
           <motion.p variants={itemVariants}>
             在这里我会分享开发过程中所遇到问题与解决方案。
@@ -80,7 +80,7 @@ export default function Page() {
         </header>
         <div className='mt-12 leading-relaxed'>
           <motion.p variants={itemVariants} className='text-xl'>
-            技术宅，喜欢探索和尝试各种技术栈，对开发充满热情
+            技术宅，喜欢探索和尝试各种技术栈，对开发充满热情，
           </motion.p>
           <motion.p variants={itemVariants} className='text-xl'>
             对我而言，编码从不是机械的重复，敲下的每一行代码，都是解决问题的钥匙，更是探索技术边界的乐趣。

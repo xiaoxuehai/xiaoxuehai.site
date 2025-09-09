@@ -1,5 +1,4 @@
 import type { RehypeShikiOptions } from '@shikijs/rehype';
-import type { Options } from 'rehype-autolink-headings';
 
 import rehypeShiki from '@shikijs/rehype';
 import dayjs from 'dayjs';
@@ -11,7 +10,7 @@ import path from 'node:path';
 import process from 'node:process';
 import { FiCalendar, FiClock, FiRefreshCw, FiTag } from 'react-icons/fi';
 import readingTime from 'reading-time';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+// import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 
@@ -47,7 +46,7 @@ export default async function BlogDetail(props: {
         rehypePlugins: [
           ...(options.rehypePlugins ?? []),
           rehypeSlug,
-          [rehypeAutolinkHeadings, { behavior: 'wrap' } as Options],
+          // [rehypeAutolinkHeadings, { behavior: 'wrap' } as Options],
           [
             rehypeShiki,
             {

@@ -1,34 +1,154 @@
 ---
-title: 'Linux环境安装android环境，打包expo项目'
-description: '介绍在 Linux 环境下搭建 Android 开发环境的完整流程，包括 Java SDK、Android SDK 等依赖的安装配置，以及如何将 Expo 项目打包为 Android 应用的具体步骤。'
+title: 'linux环境安装android环境，打包expo项目'
+description: '介绍在 Linux 环境下搭建 Android 环境的完整流程，包括 Java SDK、Android SDK 等依赖的安装配置，以及如何将 Expo 项目在本地打包为 Android 应用的具体步骤。'
 date: '2025-09-07'
 tags:
-  - Linux
-  - Android
-  - Expo
+  - linux
+  - android
+  - expo
+  - react-native
 ---
 
 ### 1.安装java jdk
 
-#### 1.1下载java jdk
+#### 1.1 下载java jdk
 
 ```bash
 wget ​https://d10.injdk.cn/openjdk/openjdk/17/openjdk-17.0.1_linux-x64_bin.tar.gz​
 ```
 
-#### 1.2解压压缩包到指定目录，新建/app/java目录，解压压缩包，最终jdk的完整路径是/app/java/jdk-17.0.1
+#### 1.2 解压压缩包到指定目录
 
-#### 1.3配置java jdk环境变量
+新建/app/java目录，解压压缩包，最终jdk的完整路径是/app/java/jdk-17.0.1
+
+#### 1.3 配置java jdk环境变量
 
 ```bash filename="~/.bashrc"
-# ~/.bashrc
 export JAVA_HOME=/usr/lib/jvm/jdk-17.0.15-oracle-x64
 export PATH=$JAVA_HOME/bin:$PATH
 ```
 
-#### 1.4验证java jdk环境变量是否配置成功
+#### 1.4 验证java jdk环境变量是否配置成功
 
 ```bash
 javac --version
 # 正常输出版本号则说明已成功安装
+```
+
+### 2.安装android sdk
+
+#### 2.1 下载android sdk
+
+```bash
+wget https://mirrors.cloud.tencent.com/AndroidSDK/commandlinetools-linux-13114758_latest.zip
+```
+
+#### 2.2 解压压缩包到指定目录
+
+新建/app/android/sdk目录，在此目录下解压压缩包，得到cmdline-tools文件夹，在cmdline-tools文件夹内创建latest文件夹，并将cmdline-tools中原来的内容移到latest文件夹中，最终sdk的完整路径是/app/android/sdk/cmdline-tools/latest
+
+#### 2.3 配置android sdk环境变量
+
+```bash filename="~/.bashrc"
+export ANDROID_SDK_ROOT=/app/android/sdk
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/cmdline-tools/latest/bin
+```
+
+#### 2.4 验证android sdk环境变量是否配置成功
+
+```bash
+sdkmanager --version
+# 正常输出版本号则说明已成功安装
+```
+
+#### 2.5 安装android sdk组件
+
+```bash
+# 查看可安装的组件列表
+sdkmanager --list
+# 安装对应组件
+sdkmanager --install "build-tools;36.0.0"
+sdkmanager --install "ndk;27.1.12297006"
+sdkmanager --install "platform-tools"
+sdkmanager --install "platforms;android-35"
+```
+
+### 3.安装node.js
+
+#### 3.1 下载nvm（使用nvm管理node.js版本）
+
+```bash
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+```
+
+#### 3.2 在.bashrc中配置nvm环境变量
+
+```bash filename="~/.bashrc"
+# 查看是否存在该配置，不存在则添加
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+```
+
+#### 3.3 验证nvm是否安装成功
+
+```bash
+nvm -v
+# 正常输出版本号则说明已成功安装
+```
+
+#### 3.4 安装node.js
+
+```bash
+nvm install 22.18.0
+nvm use 22.18.0
+```
+
+### 4.打包expo项目
+
+#### 4.1 创建expo项目
+
+```bash
+npx create-expo-app@latest
+```
+
+#### 4.2 安装eas-cli
+
+```bash
+npm install -g eas-cli
+```
+
+#### 4.3 注册eas账号
+
+注册地址：https://expo.dev/signup
+
+#### 4.3 登录
+
+```bash
+eas login
+```
+
+#### 4.4 配置项目
+
+```bash
+eas build:configure
+```
+
+#### 4.5 eas.json配置
+
+build.preview属性下增加以下配置
+
+```bash
+"android": {
+  "buildType": "apk"
+}
+```
+
+#### 4.6 本地打包项目（打包过程要确保有良好的网络环境，可能需要挂🪜，否则可能导致打包失败）
+
+等待打包完毕，默认输出路径在根目录，可以增加EAS_LOCAL_BUILD_ARTIFACTS_DIR环境变量指定输出路径  
+示例：EAS_LOCAL_BUILD_ARTIFACTS_DIR=./release eas build -p android --profile preview --local
+
+```bash
+eas build -p android --profile preview --local
 ```

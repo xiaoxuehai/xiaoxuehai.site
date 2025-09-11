@@ -38,7 +38,7 @@ export function BlogList({ formatedBlogs }: BogListProps) {
       opacity: 0,
       scale: 0.8,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
       },
     },
     [Animate.Show]: {
@@ -46,8 +46,9 @@ export function BlogList({ formatedBlogs }: BogListProps) {
       y: 0,
       opacity: 1,
       scale: 1,
+      animationTimingFunction: 'linear',
       transition: {
-        duration: 0.3,
+        duration: 0.2,
       },
     },
   };

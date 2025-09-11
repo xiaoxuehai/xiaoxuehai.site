@@ -38,7 +38,7 @@ export default function About() {
       y: -50,
       opacity: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.2,
         y: { stiffness: 100 },
       },
     },
@@ -46,8 +46,9 @@ export default function About() {
       filter: 'blur(0px)',
       y: 0,
       opacity: 1,
+      animationTimingFunction: 'linear',
       transition: {
-        duration: 0.5,
+        duration: 0.2,
         y: { stiffness: 100 },
       },
     },

@@ -92,6 +92,7 @@ export function TableOfContents({ headings }: { headings: Headling[] }) {
           variants={itemVariants}
           whileHover={{
             scale: 1.05,
+            animationTimingFunction: 'linear',
             transition: {
               duration: 0.2,
             },

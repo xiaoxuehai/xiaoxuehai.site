@@ -34,7 +34,7 @@ export function ProjectList({ data }: ProjectListProps) {
       opacity: 0,
       scale: 0.8,
       transition: {
-        duration: 0.3,
+        duration: 0.2,
         y: { stiffness: 100 },
       },
     },
@@ -43,8 +43,9 @@ export function ProjectList({ data }: ProjectListProps) {
       y: 0,
       opacity: 1,
       scale: 1,
+      animationTimingFunction: 'linear',
       transition: {
-        duration: 0.5,
+        duration: 0.2,
         y: { stiffness: 100 },
       },
     },

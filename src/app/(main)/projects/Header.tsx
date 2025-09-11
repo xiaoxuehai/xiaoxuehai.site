@@ -15,15 +15,16 @@ export function Header({ title, description }: HeaderProps) {
       opacity: 0,
       y: -50,
       transition: {
-        duration: 0.5,
+        duration: 0.2,
       },
     },
     [Animate.Show]: {
       filter: 'blur(0px)',
       opacity: 1,
       y: 0,
+      animationTimingFunction: 'linear',
       transition: {
-        duration: 0.5,
+        duration: 0.2,
       },
     },
   };

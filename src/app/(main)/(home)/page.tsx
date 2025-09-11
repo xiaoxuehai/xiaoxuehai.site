@@ -34,13 +34,14 @@ export default function Page() {
       filter: 'blur(10px)',
       x: -50,
       opacity: 0,
-      transition: { duration: 0.4 },
+      transition: { duration: 0.3 },
     },
     [Animate.Show]: {
       filter: 'blur(0px)',
       x: 0,
       opacity: 1,
-      transition: { duration: 0.4 },
+      animationTimingFunction: 'linear',
+      transition: { duration: 0.3 },
     },
   };
   const IconWrapper = ({
